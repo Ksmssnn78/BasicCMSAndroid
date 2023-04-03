@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.screens.profiles.ProfileFragment">
+    tools:context=".ui.screens.profiles.ProfileFragment"
+    android:background="@color/teal_700">
 
     <TextView
         android:layout_width="match_parent"
