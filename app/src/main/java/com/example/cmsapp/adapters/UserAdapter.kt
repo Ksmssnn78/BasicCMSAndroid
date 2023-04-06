@@ -1,7 +1,6 @@
 package com.example.cmsapp.adapters
 
 import android.content.Context
-import android.icu.text.Transliterator.Position
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,20 +10,21 @@ import com.example.cmsapp.R
 import com.example.cmsapp.models.UserDataModelItem
 import com.google.android.material.textview.MaterialTextView
 
-class UserAdapter(private val context: Context,private val userList:List<UserDataModelItem>):
+class UserAdapter(private val context: Context, private val userList: List<UserDataModelItem>) :
     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
-    private lateinit var clickListener:OnItemClickListener
+    private lateinit var clickListener: OnItemClickListener
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun onItemClick(position: Int)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener){
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         clickListener = listener
     }
 
-    class ViewHolder(userItem: View,listener: OnItemClickListener):RecyclerView.ViewHolder(userItem){
+    class ViewHolder(userItem: View, listener: OnItemClickListener) :
+        RecyclerView.ViewHolder(userItem) {
 
         var idHomeRecycler: MaterialTextView
         var nameHomeRecycler: MaterialTextView
@@ -44,12 +44,13 @@ class UserAdapter(private val context: Context,private val userList:List<UserDat
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val userItem = LayoutInflater.from(parent.context).inflate(R.layout.individual_item_home,parent,false)
-        return ViewHolder(userItem,clickListener)
+        val userItem = LayoutInflater.from(parent.context)
+            .inflate(R.layout.individual_item_home, parent, false)
+        return ViewHolder(userItem, clickListener)
     }
 
     override fun getItemCount(): Int {
-       return userList.size
+        return userList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

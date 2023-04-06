@@ -1,9 +1,7 @@
 package com.example.cmsapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cmsapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +15,5 @@ class MainActivity : AppCompatActivity() {
         mainBinding.mainActivityToolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-
     }
 }
