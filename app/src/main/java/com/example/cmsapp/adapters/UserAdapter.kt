@@ -1,62 +1,69 @@
 package com.example.cmsapp.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cmsapp.R
+import com.example.cmsapp.databinding.IndividualItemHomeBinding
 import com.example.cmsapp.models.UserDataModelItem
-import com.google.android.material.textview.MaterialTextView
 
-class UserAdapter(private val context: Context, private val userList: List<UserDataModelItem>) :
-    RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(private val onClick: (UserDataModelItem) -> Unit) :
+    ListAdapter<UserDataModelItem, UserAdapter.UserViewHolder>(
+        DIFF_CALLBACK,
+    ) {
 
-    private lateinit var clickListener: OnItemClickListener
+    class UserViewHolder(
+        private val binding: IndividualItemHomeBinding,
+        private val onClick: (UserDataModelItem) -> Unit,
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: UserDataModelItem) {
+            binding.idHomeRecycler.text = item.id.toString()
+            binding.nameHomeRecycler.text = item.name
+            binding.emailHomeRecycler.text = item.email
+            binding.genderHomeRecycler.text = item.gender
 
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        clickListener = listener
-    }
-
-    class ViewHolder(userItem: View, listener: OnItemClickListener) :
-        RecyclerView.ViewHolder(userItem) {
-
-        var idHomeRecycler: MaterialTextView
-        var nameHomeRecycler: MaterialTextView
-        var emailHomeRecycler: MaterialTextView
-        var genderHomeRecycler: MaterialTextView
-
-        init {
-            userItem.setOnClickListener {
-                listener.onItemClick(adapterPosition)
+            binding.root.setOnClickListener {
+                onClick(item)
             }
+        }
 
-            idHomeRecycler = userItem.findViewById(R.id.idHomeRecycler)
-            nameHomeRecycler = userItem.findViewById(R.id.nameHomeRecycler)
-            emailHomeRecycler = userItem.findViewById(R.id.emailHomeRecycler)
-            genderHomeRecycler = userItem.findViewById(R.id.genderHomeRecycler)
+        companion object {
+            fun from(
+                parent: ViewGroup,
+                onClick: (UserDataModelItem) -> Unit,
+            ): UserViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = IndividualItemHomeBinding.inflate(layoutInflater, parent, false)
+                return UserViewHolder(binding, onClick)
+            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val userItem = LayoutInflater.from(parent.context)
-            .inflate(R.layout.individual_item_home, parent, false)
-        return ViewHolder(userItem, clickListener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        return UserViewHolder.from(parent, onClick)
     }
 
-    override fun getItemCount(): Int {
-        return userList.size
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        val user = getItem(position)
+        holder.bind(user)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.idHomeRecycler.text = userList[position].id.toString()
-        holder.nameHomeRecycler.text = userList[position].name
-        holder.emailHomeRecycler.text = userList[position].email
-        holder.genderHomeRecycler.text = userList[position].gender
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserDataModelItem>() {
+            override fun areItemsTheSame(
+                oldItem: UserDataModelItem,
+                newItem: UserDataModelItem,
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: UserDataModelItem,
+                newItem: UserDataModelItem,
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
     }
 }
