@@ -7,5 +7,7 @@ import retrofit2.http.GET
 
 interface UserInterface {
     @GET("users")
-    suspend fun getUserData(): Response<List<UserDataModelItem>>
+    fun getUserData(): Response<List<UserDataModelItem>>
+    @GET("users")
+    fun getDataUsers(): Call<List<UserDataModelItem>>
 }

@@ -33,11 +33,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showDatas() {
-        val status = arguments?.getString("status")
-        val gender = arguments?.getString("gender")
         profileBinding.idTxtProfile.setText(arguments?.getInt("userId").toString())
         profileBinding.nameTxtProfile.setText(arguments?.getString("userName"))
-        profileBinding.statusTxtProfile.setText(status)
-        profileBinding.genderTxtProfile.setText(gender)
+        profileBinding.statusTxtProfile.setText(arguments?.getString("status"))
+        profileBinding.genderTxtProfile.setText(arguments?.getString("gender"))
     }
 }
