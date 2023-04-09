@@ -15,20 +15,22 @@ class HomeViewModel @Inject constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 
-    private val _userinfo: MutableLiveData<UserDataModelItem?> by lazy {
-        MutableLiveData<UserDataModelItem?>()
+    private val _userinfo: MutableLiveData<List<UserDataModelItem>?> by lazy {
+        MutableLiveData<List<UserDataModelItem>?>()
     }
 
-    val todo: LiveData<UserDataModelItem?>
+    val userInfo: LiveData<List<UserDataModelItem>?>
         get() = _userinfo
 
     fun getDetails() = viewModelScope.launch {
         try {
-            val userInfo = repository.getUserDetails()
+            val response = repository.getUserDetails()
 
-            _userinfo.postValue(userInfo as UserDataModelItem?)
+            _userinfo.value = response
+
         } catch (e: ApiException) {
             Timber.tag("UserDetails").d("$e")
         }
     }
 }
+
