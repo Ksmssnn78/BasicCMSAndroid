@@ -8,12 +8,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.cmsapp.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.zip.Inflater
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var mainBinding: ActivityMainBinding
-    var navController = NavController
+    lateinit var navController : NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)

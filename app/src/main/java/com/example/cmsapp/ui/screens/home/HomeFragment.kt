@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cmsapp.R
@@ -27,11 +30,12 @@ class HomeFragment : Fragment() {
     lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var userAdapter: UserAdapter
 
+
     companion object {
         fun newInstance() = HomeFragment()
     }
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,18 +52,27 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
 
+        load()
         displayData()
-        userAdapter = UserAdapter {
-            adapterOnClick()
+        userAdapter = UserAdapter { user ->
+            adapterOnClick(user)
         }
+    }
+
+    private fun load() {
+        viewModel.getDetails()
     }
 
     private fun displayData() {
         homeBinding.recyclerViewHome.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(activity)
         homeBinding.recyclerViewHome.layoutManager = linearLayoutManager
+
+        viewModel.userInfo.observe(viewLifecycleOwner) { userInfo ->
+            userAdapter.submitList(userInfo)
+        }
     }
-    private fun adapterOnClick() {
+    private fun adapterOnClick(user:UserDataModelItem) {
         findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
     }
 }
