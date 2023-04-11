@@ -25,15 +25,11 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
     lateinit var homeBinding: FragmentHomeBinding
-    lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var userAdapter: UserAdapter
 
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -49,7 +45,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         homeBinding = FragmentHomeBinding.bind(view)
         homeBinding.fabBtnHome.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_addUserFragment)
         }
 
         load()
@@ -60,6 +56,7 @@ class HomeFragment : Fragment() {
         homeBinding.recyclerViewHome.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(activity)
         homeBinding.recyclerViewHome.layoutManager = linearLayoutManager
+        homeBinding.recyclerViewHome.adapter = userAdapter
         viewModel.getDetails()
 //        val retrofitBuilder = Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create())
 //            .baseUrl("https://gorest.co.in/public/v2/").build()
@@ -96,9 +93,6 @@ class HomeFragment : Fragment() {
     private fun adapterOnClick(user:UserDataModelItem) {
         val bundle = Bundle()
         bundle.putInt("userId",user.id)
-        bundle.putString("userName",user.name)
-        bundle.putString("status",user.status)
-        bundle.putString("gender",user.gender)
-        findNavController().navigate(R.id.action_homeFragment_to_profileFragment,bundle)
+        findNavController().navigate(R.id.action_homeFragment_to_profileFragment, bundle)
     }
 }

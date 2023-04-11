@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
-            app:title="User's Data"
+            app:title="CMS APP"
             app:titleCentered="true" />
     </com.google.android.material.appbar.AppBarLayout>
 

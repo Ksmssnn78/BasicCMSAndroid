@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface TodosInterface {
-    @GET("v2/users/{userId}/todos")
+    @GET("users/{userId}/todos")
     suspend fun getTodos(@Path("userId") userId: Int): Response<List<TodoListItem>>
 }

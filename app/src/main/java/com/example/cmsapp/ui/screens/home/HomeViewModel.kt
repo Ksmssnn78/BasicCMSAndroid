@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.cmsapp.models.UserDataModelItem
 import com.example.cmsapp.networks.ApiException
 import com.example.cmsapp.repositories.UserRepository
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+@HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: UserRepository
 ) : ViewModel() {
