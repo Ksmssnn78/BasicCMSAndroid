@@ -36,7 +36,7 @@ class ApiClient {
             return Retrofit.Builder()
                 .client(buildClient())
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .baseUrl("https://gorest.co.in/public/v2/")
+                .baseUrl(Constants.SERVER_BASEURL)
                 .build()
         }
     }

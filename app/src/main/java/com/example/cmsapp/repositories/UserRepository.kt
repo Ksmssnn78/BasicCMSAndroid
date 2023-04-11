@@ -1,6 +1,7 @@
 package com.example.cmsapp.repositories
 
 import android.content.Context
+import com.example.cmsapp.models.UserDataModelItem
 import com.example.cmsapp.networks.SafeApiRequest
 import com.example.cmsapp.networks.api.UserInterface
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -18,5 +19,11 @@ class UserRepository @Inject constructor(
         }
 
         userItem
+    }
+
+    suspend fun addUser(user: UserDataModelItem) = withContext(Dispatchers.IO) {
+        SafeApiRequest.apiRequest(context) {
+            api.addUser(user)
+        }
     }
 }

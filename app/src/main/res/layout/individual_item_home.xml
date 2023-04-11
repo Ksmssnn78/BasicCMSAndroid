@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -20,26 +21,19 @@
             android:layout_height="match_parent"
             android:text="@string/app_name"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:dividerColor="@color/purple_200" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/nameHomeRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/app_name"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:dividerColor="@color/purple_200" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/emailHomeRecycler"
@@ -47,13 +41,11 @@
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:text="@string/app_name"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            app:dividerColor="@color/purple_200" />
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/genderHomeRecycler"
@@ -61,6 +53,7 @@
             android:layout_height="match_parent"
             android:layout_weight="8"
             android:text="@string/app_name"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 

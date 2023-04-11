@@ -2,6 +2,8 @@ package com.example.cmsapp.di
 
 import com.example.cmsapp.Utils.Extensions.MoshiUtil
 import com.example.cmsapp.networks.ApiClient
+import com.example.cmsapp.networks.api.CommentsInterface
+import com.example.cmsapp.networks.api.PostInterface
 import com.example.cmsapp.networks.api.TodosInterface
 import com.example.cmsapp.networks.api.UserInterface
 import com.squareup.moshi.Moshi
@@ -37,5 +39,15 @@ class AppModule {
     @Provides
     fun provideTodoApiInterface(retrofit: Retrofit): TodosInterface {
         return retrofit.create(TodosInterface::class.java)
+    }
+    @Singleton
+    @Provides
+    fun providePostApiInterface(retrofit: Retrofit): PostInterface {
+        return retrofit.create(PostInterface::class.java)
+    }
+    @Singleton
+    @Provides
+    fun provideCommentsApiInterface(retrofit: Retrofit): CommentsInterface {
+        return retrofit.create(CommentsInterface::class.java)
     }
 }
