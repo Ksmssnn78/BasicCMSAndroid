@@ -2,10 +2,7 @@ package com.example.cmsapp.networks.api
 
 import com.example.cmsapp.models.CommentListModelItem
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface CommentsInterface {
     @GET("posts/{postId}/comments")
@@ -16,4 +13,7 @@ interface CommentsInterface {
         @Path("postId") postId: Int,
         @Body comment: CommentListModelItem
     ): Response<CommentListModelItem>
+
+    @DELETE("comments/{id}")
+    suspend fun deleteComment(@Path("id") id: Int): Response<Unit>
 }

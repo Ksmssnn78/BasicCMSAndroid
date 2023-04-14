@@ -40,6 +40,12 @@
         <action
             android:id="@+id/action_commentsFragment_to_addCommentsFragment"
             app:destination="@id/addCommentsFragment" />
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addUserFragment"
@@ -50,10 +56,18 @@
         android:id="@+id/addPostFragment"
         android:name="com.example.cmsapp.ui.screens.postAdd.AddPostFragment"
         android:label="fragment_add_post"
-        tools:layout="@layout/fragment_add_post" />
+        tools:layout="@layout/fragment_add_post" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/addCommentsFragment"
         android:name="com.example.cmsapp.ui.screens.addComments.addCommentsFragment"
         android:label="fragment_add_comments"
-        tools:layout="@layout/fragment_add_comments" />
+        tools:layout="@layout/fragment_add_comments" >
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

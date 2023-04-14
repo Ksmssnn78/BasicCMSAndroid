@@ -5,4 +5,5 @@ interface CommonFunctions {
     fun initObservers() {}
 
     fun loadData() {}
+
 }

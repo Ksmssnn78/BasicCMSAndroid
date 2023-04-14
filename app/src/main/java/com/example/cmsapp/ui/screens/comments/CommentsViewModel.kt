@@ -32,4 +32,11 @@ class CommentsViewModel @Inject constructor(
             Timber.e(e)
         }
     }
+    fun deleteComment(CommentId: Int) = viewModelScope.launch {
+        try {
+            repository.deleteComment(CommentId)
+        }catch (e: ApiException){
+            Timber.e(e)
+        }
+    }
 }
