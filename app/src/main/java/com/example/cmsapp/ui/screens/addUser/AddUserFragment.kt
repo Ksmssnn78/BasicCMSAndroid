@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cmsapp.R
 import com.example.cmsapp.databinding.FragmentAddUserBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,5 +33,6 @@ class AddUserFragment : Fragment(R.layout.fragment_add_user) {
         var gender = addUserBinding.genderTxtInputAddUser.text.toString()
         var status = addUserBinding.statusTxtInputAddUser.text.toString()
         viewModel.addUser(name = name, mail = email, gender = gender, status = status)
+        findNavController().popBackStack()
     }
 }

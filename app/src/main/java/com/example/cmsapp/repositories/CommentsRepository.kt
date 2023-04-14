@@ -26,4 +26,10 @@ class CommentsRepository @Inject constructor(
                 commentsApi.addComment(postId, comment)
             }
         }
+
+    suspend fun deleteComment(postId: Int) = withContext(Dispatchers.IO) {
+        SafeApiRequest.apiRequest(context) {
+            commentsApi.deleteComment(postId)
+        }
+    }
 }

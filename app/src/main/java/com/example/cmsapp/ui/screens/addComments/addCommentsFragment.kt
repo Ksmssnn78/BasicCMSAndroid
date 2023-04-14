@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.cmsapp.R
 import com.example.cmsapp.databinding.FragmentAddCommentsBinding
 import com.example.cmsapp.databinding.FragmentCommentsBinding
@@ -34,6 +35,7 @@ class addCommentsFragment : Fragment(R.layout.fragment_add_comments) {
         var body = addCommentsBinding.bodyTxtInputAddComment.text.toString()
         var postId = arguments?.getInt("postId").toString().toInt()
         viewModel.addComment(postId = postId, email = mail, name = name, body = body)
+        findNavController().popBackStack()
     }
 
 }

@@ -8,32 +8,37 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cmsapp.databinding.IndividualItemCommentsBinding
 import com.example.cmsapp.models.CommentListModelItem
 
-class CommentsAdapter :
+class CommentsAdapter(private val onClick: (CommentListModelItem) -> Unit) :
     ListAdapter<CommentListModelItem, CommentsAdapter.CommentsViewHolder>(
         DIFF_CALLBACK
     ) {
 
     class CommentsViewHolder(
-        private val commentsBinding: IndividualItemCommentsBinding
+        private val commentsBinding: IndividualItemCommentsBinding,
+        private val onClick: (CommentListModelItem) -> Unit
     ) : RecyclerView.ViewHolder(commentsBinding.root) {
         fun bind(item: CommentListModelItem) {
             commentsBinding.nameTxtComments.setText(item.name)
             commentsBinding.commentTxtComments.setText(item.body)
-        }
 
+            commentsBinding.deleteBtnComments.setOnClickListener {
+                onClick(item)
+            }
+        }
         companion object {
             fun from(
-                parent: ViewGroup
+                parent: ViewGroup,
+                onClick: (CommentListModelItem) -> Unit
             ): CommentsViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = IndividualItemCommentsBinding.inflate(layoutInflater, parent, false)
-                return CommentsViewHolder(binding)
+                return CommentsViewHolder(binding, onClick)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {
-        return CommentsViewHolder.from(parent)
+        return CommentsViewHolder.from(parent, onClick)
     }
 
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) {

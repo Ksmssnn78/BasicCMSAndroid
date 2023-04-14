@@ -1,35 +1,23 @@
 package com.example.cmsapp.ui.screens.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cmsapp.R
 import com.example.cmsapp.adapters.UserAdapter
 import com.example.cmsapp.databinding.FragmentHomeBinding
 import com.example.cmsapp.models.UserDataModelItem
-import com.example.cmsapp.networks.ApiClient
-import com.example.cmsapp.networks.ApiException
-import com.example.cmsapp.networks.api.UserInterface
-import com.example.cmsapp.repositories.UserRepository
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import retrofit2.*
-import retrofit2.converter.moshi.MoshiConverterFactory
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
     lateinit var homeBinding: FragmentHomeBinding
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var userAdapter: UserAdapter
-
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -49,7 +37,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         load()
-
     }
 
     private fun load() {
@@ -90,9 +77,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             userAdapter.submitList(userInfo)
         }
     }
-    private fun adapterOnClick(user:UserDataModelItem) {
-        val bundle = Bundle()
-        bundle.putInt("userId",user.id)
-        findNavController().navigate(R.id.action_homeFragment_to_profileFragment, bundle)
+    private fun adapterOnClick(user: UserDataModelItem) {
+        val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment(user.id)
+        findNavController().navigate(action)
     }
 }
