@@ -16,4 +16,7 @@ interface CommentsInterface {
 
     @DELETE("comments/{id}")
     suspend fun deleteComment(@Path("id") id: Int): Response<Unit>
+
+    @PUT("comments/{id}")
+    suspend fun updateComment(@Path("id") id: Int, @Body comment: CommentListModelItem): Response<CommentListModelItem>
 }

@@ -47,10 +47,19 @@
                 app:iconGravity="start" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/commentTxtComments"
@@ -62,6 +71,16 @@
                 android:text="comment"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/updateBtnComments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_marginLeft="2dp"
+                app:icon="@drawable/baseline_edit_24"
+                android:padding="8dp"/>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
