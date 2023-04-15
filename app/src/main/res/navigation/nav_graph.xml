@@ -46,6 +46,9 @@
         <argument
             android:name="userId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_commentsFragment_to_updateCommentFragment2"
+            app:destination="@id/updateCommentFragment2" />
     </fragment>
     <fragment
         android:id="@+id/addUserFragment"
@@ -66,6 +69,27 @@
         android:name="com.example.cmsapp.ui.screens.addComments.addCommentsFragment"
         android:label="fragment_add_comments"
         tools:layout="@layout/fragment_add_comments" >
+        <argument
+            android:name="postId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateCommentFragment2"
+        android:name="com.example.cmsapp.ui.screens.updateComment.UpdateCommentFragment"
+        android:label="fragment_update_comment"
+        tools:layout="@layout/fragment_update_comment" >
+        <argument
+            android:name="commentId"
+            app:argType="integer" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="mail"
+            app:argType="string" />
+        <argument
+            android:name="cmnt"
+            app:argType="string" />
         <argument
             android:name="postId"
             app:argType="integer" />
